@@ -1,2 +1,3 @@
 # ProgramingWebAPPs
-Programing Web Applications
+Programing Web Applications, Period 1.
+Teacher: Mrs. Heinricher
