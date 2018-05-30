@@ -1,0 +1,37 @@
+<html>
+   <head>
+  	<title>My First Javascript</title>
+   </head>
+   <body>
+  	Hello World!
+  	//using a text box
+  	<p>Say what? <input id="sayThis" size=40>
+  	//using a selection drop down box
+  	<p>How many times? <select id='howMany'>
+                        	<option value=1>1</option>
+                        	<option value=5 selected>5</option>
+                        	<option value=10>10</option>
+                        	<option value=20>20</option>
+                   	  </select>
+  	//using a button, this button executes the function "doLoop" when clicked
+  	<p><button onClick='doLoop()'>Do It!</button>
+  	//a div to write to
+  	<p><div id="results"></div>
+  	//Javascript that holds the function
+  	<script type='text/javascript'>
+     	function doLoop() {
+        	//put the value of the text box in a var called sayWhat
+        	var sayWhat = document.getElementById('sayThis').value;
+    	    //put the value of the dropdown box in a var called maxLoop
+        	var maxLoop = document.getElementById('howMany').value;
+        	var str = ''; // where we'll store our output temporarily.
+        	for (var i=1; (i<=maxLoop); i++) {
+               str=str+i+':'+sayWhat+'<br>';
+        	}
+        	//use the etElementById method to write the value of str to the div named "results"
+        	//see page 4 of Essential Javascript to understand the next line.
+            document.getElementById("results").innerHTML=str;
+     	}
+  	</script>
+   </body>
+</html>
