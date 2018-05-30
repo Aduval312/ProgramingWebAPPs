@@ -27,14 +27,14 @@
 			var paddle1X = 300;
 			var paddle2X = 250;
 			var PADDLE_THICKNESS = 100;
-			var PADDLE_HEIGHT = 15;
+			var PADDLE_HEIGHT = 16;
 			
 			//calculate mouse posistion
 			function calculateMousePos(evt) {
 				var rect = canvas.getBoundingClientRect();
 				var root = document.documentElement;
 				var mouseX = evt.clientX - rect.left - root.scrollLeft;
-				var mouseY = evt.clientY = rect.top - root.scrollTop;
+				var mouseY = evt.clientY - rect.top - root.scrollTop;
 				return{
 					x:mouseX, y:mouseY
 				};
@@ -63,11 +63,11 @@
 			function computerMovement() {
 				var paddle2XCenter = paddle2X + (PADDLE_THICKNESS/2);
 				
-				if(paddle2XCenter <ballX - 35){
+				if(paddle2XCenter < (ballX - 40)){
 					paddle2X = paddle2X + 6;
 				}
-				else if(paddle2XCenter> ballX + 35){
-					paddle2X = paddle2X-6;
+				else if(paddle2XCenter > (ballX + 55)){
+					paddle2X = paddle2X - 6;
 				}
 			}
 			
@@ -92,17 +92,36 @@
 			
 			if(ballY>canvas.height){
 				
-				if(ballX > paddle1X && ballX<(paddle1X+paddle_HEIGHT)){
+				if(ballX > paddle1X && ballX<(paddle1X+PADDLE_THICKNESS)){
 					ballSpeedY = -ballSpeedY;
 				}
-				ballY = ballY + ballSpeedY;
+				else {
 					ballReset();
 					player2Score++;
+				}
+				ballY = ballY + ballSpeedY;
+				
 					
 					
 				
 			
 		}
+		if(ballY<0){
+				
+				if(ballX > paddle2X && ballX<(paddle2X+PADDLE_THICKNESS)){
+					ballSpeedY = -ballSpeedY;
+				}
+				else {
+					ballReset();
+					player1Score++;
+				}
+				ballY = ballY + ballSpeedY;
+				
+					
+					
+				
+			
+			}
 		
 		//this is where the problem is
 			if(ballY<0){
@@ -110,6 +129,9 @@
 			}
 			if(ballY > canvas.height){
 				ballSpeedY = -ballSpeedY;
+			}
+			if(ballX > canvas.width){
+				ballSpeedX = -ballSpeedX;
 			}
 			ballX = ballX+ballSpeedX;
 			ballY = ballY+ballSpeedY;
